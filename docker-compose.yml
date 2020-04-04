@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    # name of the service
+    app:
+        container_name: docker-node-mongo
+        restart: always
+        # look in current dir for Dockerfile
+        build: .
+        ports:
+            - '80:3000'
+        links:
+            # link mongo service to this app
+            - mongo
+    
+    # name of mongodb service
+    mongo:
+        container_name: mongo
+        # image name given beacuse we are pulling the image
+        # we did not create mongo image
+        image: mongo
+        ports:
+            - '27017:27017'
+
